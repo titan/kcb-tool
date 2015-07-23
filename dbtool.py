@@ -30,10 +30,11 @@ def load(filename):
                 del ds[i]
                 continue
             if 'is_post' in d:
-                if d['is_post'] == u'是':
-                    d['is_post'] = True
-                else:
-                    d['is_post'] = False
+                del d['is_post']
+                # if d['is_post'] == u'是':
+                #     d['is_post'] = True
+                # else:
+                #     d['is_post'] = False
             if 'province' in d:
                 print d['province'], d['city'], d['district'], d['address'], d['name'], d['latitude'], d['longitude']
             if 'longitude' in d and d['longitude']:
@@ -44,10 +45,14 @@ def load(filename):
                 d['latitude'] = float(d['latitude'])
             else:
                 d['latitude'] = 0.0
+            if 'partner' not in d:
+                d['partner'] = False
             i += 1
         return ds
 
 def uuid(d):
+    if 'id' in d:
+        return d['id']
     if 'province' in d:
         if 'district' not in d or d['district'] == None:
             d['district'] = ''

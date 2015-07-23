@@ -7,10 +7,10 @@ import time
 from urllib.error import HTTPError
 
 key = "api:key-c43ee09bf8aac9a783c1a2d6557322d9"
-mobile = ["18601250262", "18601152810", "18604711912"]
+mobile = ["18601250262", "18601152810", "18604711912", "15822853996"]
 
 try:
-    urllib.request.urlopen("https://api.kachebang.com/v1/trucks")
+    urllib.request.urlopen("https://api.kachebang.com/v1.7/trucks")
 except HTTPError as err:
     num = err.code
     if num == 403:
