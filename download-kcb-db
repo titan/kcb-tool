@@ -1,0 +1,12 @@
+#!/bin/sh
+
+date=`/usr/bin/date +%Y-%m-%d`
+
+ip='119.254.111.160'
+port='2205'
+/usr/bin/expect -c "
+spawn scp -i /home/titan/kachebang-key -P $port root@$ip:/dev/shm/backup-$date.sql.gz /home/titan/db-backup/;
+expect {
+  \"*yes/no\" { send \"yes\r\"; exp_continue}
+}
+"
