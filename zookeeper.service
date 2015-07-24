@@ -1,0 +1,20 @@
+[Unit]
+Description=Zookeeper service
+After=network.target
+
+[Service]
+SyslogIdentifier=hadoop
+Environment=ZHOME=/opt/zookeeper
+
+ExecStart=/usr/bin/java \
+  -Dzookeeper.log.dir=${ZHOME}/logs/zookeeper.log \
+  -Dzookeeper.root.logger=INFO,ROLLINGFILE \
+  -cp ${ZHOME}/zookeeper-3.4.6.jar:${ZHOME}/lib/* \
+  -Dlog4j.configuration=file:${ZHOME}/conf/log4j.properties \
+  -Dcom.sun.management.jmxremote \
+  -Dcom.sun.management.jmxremote.local.only=false \
+  org.apache.zookeeper.server.quorum.QuorumPeerMain \
+  ${ZHOME}/conf/zoo.cfg
+
+[Install]
+WantedBy=multi-user.target
