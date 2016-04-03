@@ -153,7 +153,7 @@ def encryptBlock(S, input):
 
 def paddingKey(key):
     l = len(key)
-    for i in range(len(key) % 4):
+    for i in range(l % 4):
         key.append(0)
     return key
 

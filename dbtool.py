@@ -252,7 +252,13 @@ if __name__ == '__main__':
     parser.add_argument('-3c', action = 'store_true', default = False, help = 'flag to generate 3-cascade index', dest = 'tc')
     parser.add_argument('-mk', action = 'store_true', default = False, help = 'flag to generate make index')
     parser.add_argument('-1c', action = 'store_true', default = False, help = 'flag to generate 1-cascade index', dest = 'oc')
+    parser.add_argument('-android', action = 'store_true', default = False, help = 'flag to generate files to android')
+    parser.add_argument('-ios', action = 'store_true', default = False, help = 'flag to generate files to ios')
     parser.add_argument('src', action = 'store', help = 'yaml source')
     parser.add_argument('dst', action = 'store', help = 'destination')
     args = parser.parse_args()
+    if args.ios:
+        seckey = 'smallspanner-kachebang-ios-1.0.0'
+    else:
+        seckey = 'smallspanner-kachebang-android'
     main(args.src, args.dst, args.db, args.gt, args.tc, args.mk, args.oc)
